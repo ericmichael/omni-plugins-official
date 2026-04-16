@@ -6,6 +6,7 @@ Official skill bundles for [Omni Code Launcher](https://github.com/omni-code/lau
 
 - **git-workflow** — `commit`, `debug`, `land`, `pull`, `push`
 - **dev-essentials** — `software-planning`, `playwright-cli`, `webapp-acceptance-runner`
+- **omniagents** — `omniagents-basic`
 
 ## Install
 

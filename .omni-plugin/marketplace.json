@@ -32,6 +32,15 @@
         "./skills/playwright-cli",
         "./skills/webapp-acceptance-runner"
       ]
+    },
+    {
+      "name": "omniagents",
+      "description": "Build AI agents with the OmniAgents YAML format",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/omniagents-basic"
+      ]
     }
   ]
 }
