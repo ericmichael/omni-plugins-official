@@ -12,7 +12,7 @@ Official skill bundles for [Omni Code Launcher](https://github.com/omni-code/lau
 In Omni Code Launcher, open Settings → Skills → **Install from marketplace**, then enter:
 
 ```
-eric-michael-mtz/omni-plugins-official
+ericmichael/omni-plugins-official
 ```
 
 Pick a bundle and click **Install**.
