@@ -1,0 +1,37 @@
+{
+  "name": "omni-plugins-official",
+  "owner": {
+    "name": "Eric Martinez",
+    "email": "eric.michael.mtz@gmail.com"
+  },
+  "metadata": {
+    "description": "Official Omni Code skills",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "git-workflow",
+      "description": "Git lifecycle skills: commit, push, pull, land PRs, and debug failures",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/commit",
+        "./skills/debug",
+        "./skills/land",
+        "./skills/pull",
+        "./skills/push"
+      ]
+    },
+    {
+      "name": "dev-essentials",
+      "description": "Software planning, browser automation, and acceptance test runner",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/software-planning",
+        "./skills/playwright-cli",
+        "./skills/webapp-acceptance-runner"
+      ]
+    }
+  ]
+}
