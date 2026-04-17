@@ -5,8 +5,8 @@
     "email": "eric.michael.mtz@gmail.com"
   },
   "metadata": {
-    "description": "Official Omni Code skills",
-    "version": "0.1.0"
+    "description": "Official Omni Code skills and apps",
+    "version": "0.2.0"
   },
   "plugins": [
     {
@@ -42,5 +42,19 @@
         "./skills/omniagents-basic"
       ]
     }
+  ],
+  "apps": [
+    { "id": "teams", "label": "Teams", "icon": "People20Regular", "url": "https://teams.microsoft.com" },
+    { "id": "spotify", "label": "Spotify", "icon": "MusicNote220Regular", "url": "https://open.spotify.com?pwa=1" },
+    { "id": "gmail", "label": "Gmail", "icon": "News20Regular", "url": "https://mail.google.com" },
+    { "id": "reddit", "label": "Reddit", "icon": "Globe20Regular", "url": "https://www.reddit.com" },
+    { "id": "xbox-cloud", "label": "Xbox Cloud Gaming", "icon": "SlideLayout20Regular", "url": "https://www.xbox.com/play" },
+    { "id": "discord", "label": "Discord", "icon": "People20Regular", "url": "https://discord.com/app" },
+    { "id": "github", "label": "GitHub", "icon": "PersonBoard20Regular", "url": "https://github.com" },
+    { "id": "instagram", "label": "Instagram", "icon": "Star20Regular", "url": "https://www.instagram.com" },
+    { "id": "x", "label": "X", "icon": "Globe20Regular", "url": "https://x.com" },
+    { "id": "youtube", "label": "YouTube", "icon": "Video20Regular", "url": "https://www.youtube.com" },
+    { "id": "disney-plus", "label": "Disney+", "icon": "Video20Regular", "url": "https://www.disneyplus.com" },
+    { "id": "netflix", "label": "Netflix", "icon": "Video20Regular", "url": "https://www.netflix.com" }
   ]
 }
