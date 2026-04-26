@@ -1,0 +1,122 @@
+# Eval scenario template — tier-keyed shape.
+#
+# Replace every <PLACEHOLDER>. Delete the sections you don't need.
+# Run `python scripts/validate_scenario.py --file <this_file>.yml` after
+# editing to catch typos / missing fixtures / unregistered measures.
+#
+# See references/eval_design.md for the design framework.
+# See references/measures_catalog.md for measure patterns.
+# See references/schemas.md for the canonical schema.
+
+scenarios:
+  - name: <SCENARIO_SNAKE_CASE_NAME>
+
+    # Workspace fixture under evaluations/fixtures/workspaces/<NAME>/.
+    # The agent runs against a tempdir copy of this. Drop this line if
+    # the scenario doesn't need a workspace.
+    fixture: <FIXTURE_NAME>
+
+    # DB fixture under evaluations/fixtures/dbs/<NAME>.db (with seeder
+    # at build_<NAME>.py). Drop if not using omni-projects MCP.
+    db_fixture: <DB_FIXTURE_NAME>
+
+    # Non-determinism handling: 5 is the standard. Don't drop below 3.
+    runs_per_prompt: 5
+
+    prompt: |
+      You are a supervisor agent. Your job is to find the open ticket
+      in the project and drive it to completion. Do not refuse, do not
+      ask for clarification. Start working immediately.
+
+      ## Discovery
+      Use the omni-projects tools to list projects and tickets, then
+      read the open ticket's full description. The title and
+      description are your complete instructions.
+
+      ## Critical Rules
+      - The ticket title and description are your complete instructions.
+        Use the codebase to fill in any gaps.
+      - Never refuse to start work.
+      - You are working in an isolated sandbox.
+      - Do not push to git or open pull requests.
+
+      ## How to Work
+      1. Explore — read the codebase, including any skills under
+         `.omni_code/skills/`.
+      2. Plan — form a concrete plan with testable steps.
+      3. Execute — make the changes the ticket requires.
+      4. Verify — run the tests / checks the acceptance criteria call for.
+      5. Advance — use `move_ticket` to walk the ticket through its
+         pipeline as work progresses.
+
+      When the ticket is in the terminal column and the acceptance
+      criteria are satisfied, output exactly the line [DONE].
+
+    continuation_prompt: |
+      Continuation guidance:
+
+      - Resume from the current workspace state. Don't restart from
+        scratch.
+      - The original task instructions are already in this session.
+      - You are in an isolated sandbox; make changes freely.
+      - Check the ticket's current column. If complete and acceptance
+        criteria pass, advance with `move_ticket` and output [DONE].
+        Otherwise continue the work.
+      - Use `add_ticket_comment` to record what you accomplished.
+
+    max_continuations: 15
+    until_sentinel: "[DONE]"
+
+    # Stop the continuation loop when the SQL row exists. Mirrors the
+    # outcome assertion below.
+    until_sql: |
+      SELECT 1 FROM tickets t
+      JOIN pipeline_columns c ON c.id = t.column_id
+      WHERE t.title = '<TICKET_TITLE>' AND c.label = 'Done'
+
+    # Configuration consumed by measures via ctx.expect.
+    expect:
+      # Outcome verifier — db_row_exists.
+      assert_sql: |
+        SELECT 1 FROM tickets t
+        JOIN pipeline_columns c ON c.id = t.column_id
+        WHERE t.title = '<TICKET_TITLE>' AND c.label = 'Done'
+
+      # Outcome verifier — command_in_workspace_succeeds.
+      command: "uv run pytest -q 2>&1"
+      command_timeout_s: 240
+
+      # Outcome verifier — bug_caught_by_tests.
+      revert_target: "<src/path/to/file.py>"
+      test_command: "uv run pytest -q 2>&1"
+      test_timeout_s: 240
+
+      # Quality / process — ticket_moved_through_pipeline.
+      min_ticket_moves: 2
+
+      # Quality — scope_respected. Tighten these to the minimum the
+      # agent reasonably needs to touch. Over-specifying turns
+      # scope_respected from a real check into a trivia game.
+      allowed_modified:
+        - "<path1>"
+        - "<path2>"
+      allowed_new:
+        - "<path>"
+      allowed_new_dirs:
+        - "<dir>/"
+
+    # Tiered measures. Outcome / Quality / Guard gate CI on per-run
+    # failure. Process measures are recorded but never gate.
+    measures:
+      outcome:
+        - bug_caught_by_tests
+        - db_row_exists
+        - command_in_workspace_succeeds
+      quality:
+        - scope_respected
+      guard:
+        - no_remote_operations
+        - no_test_disabling
+      process:
+        - mcp_used_to_discover_ticket
+        - ticket_moved_through_pipeline
