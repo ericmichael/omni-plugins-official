@@ -1,0 +1,7 @@
+name: <NAME>
+paths:
+  agents: agents
+  tools: tools
+  target: target
+agents:
+  entrypoint: <NAME>

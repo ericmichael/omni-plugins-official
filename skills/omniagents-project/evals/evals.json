@@ -1,0 +1,65 @@
+{
+  "skill_name": "omniagents-project",
+  "credentials_note": "A working .env with valid OPENAI_API_KEY/OPENAI_BASE_URL lives at /home/emm/Omni/Workspace/omniagents_demo/.env — subagents should `cp` it into their project root before running verify_project.py without --no-llm-check.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "med_student_greenfield",
+      "prompt": "I'm a third-year med student studying for Step 2. I want to build an AI agent that quizzes me on differential diagnoses — like, I describe a clinical vignette and it asks me what's on my differential, then pushes back if I miss something or if my reasoning is weak. Here's the thing: I want to actually measure if the agent is being a good Socratic teacher vs just giving me the answer too easily. Can you set up the whole project for me? I want to be able to run it locally and also run evaluations on it to see if my prompt tweaks are actually making it better. I don't care about packaging it or putting it on PyPI or anything — just want it working on my laptop. Put it in /tmp/diff_dx_tutor.",
+      "expected_output": "A trimmed (learner tier) OmniAgents project at /tmp/diff_dx_tutor with the productionization layer stripped, agent customized for differential dx tutoring, and at least one realistic eval scenario + measure beyond placeholders.",
+      "files": [],
+      "expectations": [
+        "A project.yml file exists at /tmp/diff_dx_tutor/project.yml",
+        "An agent directory exists under /tmp/diff_dx_tutor/agents/<name>/ with agent.yml and instructions.md",
+        "The agent.yml's `name:` field matches the parent directory name (framework rejects mismatches)",
+        "The agent.yml's description and/or welcome_text are customized for differential diagnosis tutoring (not still 'A helpful AI agent. Customize this description.' or 'Hello from <name>.')",
+        "The instructions.md is filled in with substantive content for Socratic differential-diagnosis tutoring, not the bare placeholder template containing `<...>` angle-bracket blocks",
+        "The productionization layer is stripped: NO Python wrapper package directory (no cli.py/setup.py/config.py at project root), NO pyproject.toml, NO Makefile, NO .github/workflows/, NO .devcontainer/",
+        "evaluations/scenarios.yml has at least one scenario with content related to clinical reasoning or differential diagnosis (not only the placeholder 'Say hello')",
+        "evaluations/measures.py defines at least one @evaluation_measure beyond `always_pass` that meaningfully checks agent behavior",
+        "The verify_project.py end-to-end run (with LLM credentials, no --no-llm-check) exits with status 0"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "legal_bot_migration",
+      "prompt": "I built this little legal research agent over at /tmp/legal_bot_basic — it's just an agent.yml + instructions.md + a tools/ dir with one custom tool. I've been iterating on the system prompt for two weeks and honestly I have no idea if my changes are making it better or worse. Each time I tweak something, I just spot-check a few queries and feel vaguely good or bad about it. I want to add real evaluations so I can actually see when changes regress. Don't repackage it or set up CI or anything — I'm not shipping this to anyone, I just want to start measuring. Migrate it in place.",
+      "expected_output": "The /tmp/legal_bot_basic dir restructured: agent.yml + instructions.md moved into agents/legal_bot/, project.yml + evaluations/ added at root, tools/ stays at root, no productionization added.",
+      "files": ["/home/emm/.claude/skills/omniagents-project-workspace/fixtures/legal_bot_basic"],
+      "expectations": [
+        "/tmp/legal_bot_basic/agents/legal_bot/agent.yml exists (the original agent.yml has been moved into the agent subdirectory)",
+        "/tmp/legal_bot_basic/agents/legal_bot/instructions.md exists (instructions moved with the agent.yml)",
+        "The agent.yml's `name:` field equals 'legal_bot' (matches the agent directory name)",
+        "/tmp/legal_bot_basic/project.yml exists at the project root with `entrypoint: legal_bot`",
+        "/tmp/legal_bot_basic/evaluations/ directory exists and contains all four files: scenarios.yml, measures.py, metrics.yml, evaluation.yml",
+        "/tmp/legal_bot_basic/tools/ stays at the project root — it has NOT been moved into agents/legal_bot/tools/",
+        "The original custom tool file tools/lookup_case.py is still present (not lost during the restructure)",
+        "NO productionization layer was added: no legal_bot/cli.py wrapper Python package, no Makefile, no .github/ directory, no pyproject.toml",
+        "The verify_project.py end-to-end run (with LLM credentials, no --no-llm-check) exits with status 0"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "support_triage_productionized",
+      "prompt": "I'm a software engineer at a mid-size SaaS company. I want to build an AI agent that triages incoming customer support tickets — reads the ticket, classifies severity, suggests a routing destination (billing/tech/sales), and drafts a first-response template. We have ~5 support reps who need to run this on their laptops; they're not engineers, mostly Excel users. So I need this packaged as a one-line pip install with a setup wizard for the API key. I also want CI evaluations gating PRs so we don't regress as we tweak the agent. Set up the full project with all the production stuff included. Put it in /tmp/support_triage.",
+      "expected_output": "A FULL OmniAgents project at /tmp/support_triage with the productionization layer KEPT: wrapper Python package, pyproject.toml with console scripts, Makefile, CI workflows, devcontainer. Agent customized with realistic instructions, custom tools, and meaningful evals.",
+      "files": [],
+      "expectations": [
+        "A project.yml file exists at /tmp/support_triage/project.yml",
+        "An agent directory exists at /tmp/support_triage/agents/support_triage/ with agent.yml and instructions.md",
+        "The agent.yml's name field matches its directory (support_triage)",
+        "The agent.yml's description and welcome_text are customized for customer support ticket triage (not the placeholder defaults)",
+        "instructions.md is filled in with substantive content for support ticket triage workflow, not the bare placeholder template with `<...>` blocks",
+        "The Python wrapper package is KEPT at /tmp/support_triage/support_triage/ with all four files: __init__.py, cli.py, setup.py, config.py",
+        "/tmp/support_triage/pyproject.toml exists and declares both console scripts: 'support_triage' and 'support_triage-setup'",
+        "/tmp/support_triage/Makefile exists with publish and bump-* targets",
+        "/tmp/support_triage/.github/workflows/omniagents-eval.yml exists (CI eval gate)",
+        "/tmp/support_triage/.devcontainer/devcontainer.json exists",
+        "tools/ contains at least one custom @function_tool relevant to ticket triage (e.g., classifier, router, severity scorer)",
+        "evaluations/scenarios.yml has at least one realistic scenario about support tickets (not only the placeholder 'Say hello')",
+        "evaluations/measures.py defines at least one @evaluation_measure beyond `always_pass` that meaningfully checks triage behavior",
+        "The verify_project.py end-to-end run (with LLM credentials, no --no-llm-check) exits with status 0"
+      ]
+    }
+  ]
+}
