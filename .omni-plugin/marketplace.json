@@ -24,22 +24,26 @@
     },
     {
       "name": "dev-essentials",
-      "description": "Software planning, browser automation, and acceptance test runner",
+      "description": "Software planning, ticket workflows, bugfixing, browser automation, and acceptance test runner",
       "source": "./",
       "strict": false,
       "skills": [
         "./skills/software-planning",
+        "./skills/software-tickets",
+        "./skills/bugfix",
         "./skills/playwright-cli",
         "./skills/webapp-acceptance-runner"
       ]
     },
     {
       "name": "omniagents",
-      "description": "Build AI agents with the OmniAgents YAML format",
+      "description": "Build AI agents with the OmniAgents YAML format, scaffold full projects, and author evals",
       "source": "./",
       "strict": false,
       "skills": [
-        "./skills/omniagents-basic"
+        "./skills/omniagents-basic",
+        "./skills/omniagents-project",
+        "./skills/omniagents-eval-creator"
       ]
     }
   ],
