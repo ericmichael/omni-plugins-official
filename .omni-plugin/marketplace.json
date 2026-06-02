@@ -48,16 +48,18 @@
     }
   ],
   "apps": [
-    { "id": "teams", "label": "Teams", "icon": "./apps/icons/teams.svg", "url": "https://teams.microsoft.com/v2/?skipauthstrap=1" },
-    { "id": "spotify", "label": "Spotify", "icon": "./apps/icons/spotify.svg", "url": "https://open.spotify.com?pwa=1" },
+    { "id": "teams", "label": "Teams", "icon": "./apps/icons/teams.svg", "url": "https://teams.microsoft.com" },
+    { "id": "outlook", "label": "Outlook", "icon": "./apps/icons/outlook.svg", "url": "https://outlook.office.com/mail/" },
+    { "id": "spotify", "label": "Spotify", "icon": "./apps/icons/spotify.svg", "url": "https://open.spotify.com" },
     { "id": "gmail", "label": "Gmail", "icon": "./apps/icons/gmail.svg", "url": "https://mail.google.com" },
     { "id": "reddit", "label": "Reddit", "icon": "./apps/icons/reddit.svg", "url": "https://www.reddit.com" },
     { "id": "xbox-cloud", "label": "Xbox Cloud Gaming", "icon": "./apps/icons/xbox.svg", "url": "https://www.xbox.com/play" },
-    { "id": "discord", "label": "Discord", "icon": "./apps/icons/discord.svg", "url": "https://discord.com/app" },
+    { "id": "discord", "label": "Discord", "icon": "./apps/icons/discord.svg", "url": "https://discord.com/channels/@me" },
     { "id": "github", "label": "GitHub", "icon": "./apps/icons/github.svg", "url": "https://github.com" },
     { "id": "instagram", "label": "Instagram", "icon": "./apps/icons/instagram.svg", "url": "https://www.instagram.com" },
     { "id": "x", "label": "X", "icon": "./apps/icons/x.svg", "url": "https://x.com" },
     { "id": "youtube", "label": "YouTube", "icon": "./apps/icons/youtube.svg", "url": "https://www.youtube.com" },
+    { "id": "zoom", "label": "Zoom", "icon": "./apps/icons/zoom.svg", "url": "https://app.zoom.us/wc/home" },
     { "id": "disney-plus", "label": "Disney+", "icon": "./apps/icons/disneyplus.svg", "url": "https://www.disneyplus.com" },
     { "id": "netflix", "label": "Netflix", "icon": "./apps/icons/netflix.svg", "url": "https://www.netflix.com" }
   ]
