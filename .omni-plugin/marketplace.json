@@ -48,7 +48,7 @@
     }
   ],
   "apps": [
-    { "id": "teams", "label": "Teams", "icon": "./apps/icons/teams.svg", "url": "https://teams.microsoft.com" },
+    { "id": "teams", "label": "Teams", "icon": "./apps/icons/teams.svg", "url": "https://teams.microsoft.com/v2/" },
     { "id": "outlook", "label": "Outlook", "icon": "./apps/icons/outlook.svg", "url": "https://outlook.office.com/mail/" },
     { "id": "spotify", "label": "Spotify", "icon": "./apps/icons/spotify.svg", "url": "https://open.spotify.com" },
     { "id": "gmail", "label": "Gmail", "icon": "./apps/icons/gmail.svg", "url": "https://mail.google.com" },
