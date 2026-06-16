@@ -1,5 +1,5 @@
 ---
-name: debug
+name: software-debug
 description:
   Investigate failures by tracing logs, reproducing issues, and isolating root
   causes; use when builds fail, tests break, runs stall, or behavior is

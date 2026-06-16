@@ -1,5 +1,5 @@
 ---
-name: pull
+name: git-pull
 description:
   Pull latest origin/main into the current local branch and resolve merge
   conflicts (aka update-branch). Use when the agent needs to sync a feature

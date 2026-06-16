@@ -1,9 +1,9 @@
 ---
-name: bugfix
+name: software-bugfix
 description:
   Fix a known bug end-to-end. Use when a bug is described concretely
   enough to act on (a ticket, a stack trace, a user report), or after
-  `debug` has identified a root cause.
+  `software-debug` has identified a root cause.
 ---
 
 # Bugfix

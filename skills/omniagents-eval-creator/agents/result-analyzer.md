@@ -104,7 +104,7 @@ Measures whose behavior doesn't match what we'd expect:
 ## Recommended next intervention
 
 Per the intervention hierarchy (skill first, system prompt last). Be specific:
-- "Extend `bugfix` skill with explicit guidance on writing regression tests that fail on revert"
+- "Extend `software-bugfix` skill with explicit guidance on writing regression tests that fail on revert"
 - "Don't change anything yet — variance pattern needs more runs to interpret"
 ```
 

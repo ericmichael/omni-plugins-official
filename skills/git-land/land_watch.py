@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Async PR watcher for the land skill.
+"""Async PR watcher for the git-land skill.
 
 Monitors review comments, CI checks, and PR head updates in parallel.
 Uses only the `gh` CLI — no tokens or API libraries required.

@@ -88,7 +88,7 @@ Tier: outcome ✓. No subsumption.
 Existence-only check. The report-rendered measure verifies existence + size + runId match.
 Recommend: drop.
 
-### `debug_skill_activated` — re-tier
+### `software_debug_skill_activated` — re-tier
 Currently `process` ✓. (No change needed if already process.)
 Note: across N runs in history, passes 80% of the time but does NOT correlate with bug_caught_by_tests
 outcome. Diagnostic-only — keep but don't gate CI on it.

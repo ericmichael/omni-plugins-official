@@ -30,7 +30,7 @@ Don't create any tasks while you're in `Backlog`. There's nothing to decompose y
 **Definition of done before moving to Implementation:**
 - You have read the ticket fully — title, description, acceptance criteria — along with any linked tickets, the project / milestone context, and any relevant project pages.
 - You have searched the codebase to identify exactly which files, functions, and systems need to change.
-- You have followed the `software-planning` skill end-to-end. Apply the `debug` skill if the failure isn't yet localized.
+- You have followed the `software-planning` skill end-to-end. Apply the `software-debug` skill if the failure isn't yet localized.
 - You have produced a **decision-complete plan** written as a project page via `create_page`. Page name: `Plan: <ticket title>`. The plan is the deliverable for this column.
 
 **No source edits in Planning.** Edits belong in Implementation.
@@ -69,7 +69,7 @@ If you discover the plan is wrong mid-execution, **update the page and continue*
 ```
 task_create(subject="Read ticket fully", activeForm="Reading ticket fully")
 task_create(subject="Read source files the ticket points to", activeForm="Reading source files")
-task_create(subject="Read software-planning and bugfix skills", activeForm="Reading relevant skills")
+task_create(subject="Read software-planning and software-bugfix skills", activeForm="Reading relevant skills")
 task_create(subject="Localize the failure", activeForm="Localizing the failure")
 task_create(subject="Write the plan page", activeForm="Writing the plan page")
 ```
@@ -84,14 +84,14 @@ A new feature, a refactor, or a perf investigation would substitute different de
 
 **Definition of done before moving to QA:**
 - The planned source changes are delivered. The diff maps directly to the plan's "Implementation" section — no scope creep.
-- A regression test was written **before** the source fix and observed to fail against the broken code (the `bugfix` skill's red-then-green pattern). This is non-negotiable — without it you can't prove the test catches the bug.
+- A regression test was written **before** the source fix and observed to fail against the broken code (the `software-bugfix` skill's red-then-green pattern). This is non-negotiable — without it you can't prove the test catches the bug.
 - The full test suite (`uv run pytest -q`) passes.
 - No `TODO`s, debug prints, half-finished branches, or commented-out code in the diff.
 
 **Task list for the Implementation column.** When you enter Implementation, your *first* tool calls are individual `task_create` calls — one per discrete deliverable. Example for a Python project (Rails would substitute *rspec*, JS *vitest/jest*, Go *go test*, etc. — read AGENTS.md for the project's actual test command):
 
 ```
-task_create(subject="Read the bugfix skill end-to-end", activeForm="Reading the bugfix skill")
+task_create(subject="Read the software-bugfix skill end-to-end", activeForm="Reading the software-bugfix skill")
 task_create(subject="Add the failing regression test", activeForm="Adding the failing regression test")
 task_create(subject="Run the test suite and observe the new test fail (red)", activeForm="Running tests, expecting red")
 task_create(subject="Apply the source fix", activeForm="Applying the source fix")
@@ -100,11 +100,11 @@ task_create(subject="Verify-by-revert: stash the fix, re-run tests, expect red, 
 task_create(subject="Run the full test suite", activeForm="Running the full test suite")
 ```
 
-Seven separate `task_create` calls. Use `addBlockedBy` to link them in the order above. The red-before-green rule means task 3 (observe red) blocks task 4 (apply fix); do not write the test and the fix in one batch and then run the test command once. The verify-by-revert task (per the bugfix skill's section 2b) catches false-green tests before the eval does — don't skip it.
+Seven separate `task_create` calls. Use `addBlockedBy` to link them in the order above. The red-before-green rule means task 3 (observe red) blocks task 4 (apply fix); do not write the test and the fix in one batch and then run the test command once. The verify-by-revert task (per the software-bugfix skill's section 2b) catches false-green tests before the eval does — don't skip it.
 
 For a feature ticket the shape is similar but without the red-before-green: *"Add unit tests for the new behavior"* → *"Implement the behavior"* → *"Run the test suite"*. For a refactor: *"Capture characterization tests for the current behavior"* → *"Apply the refactor"* → *"Run the test suite, all green"*.
 
-**Common mistake:** collapsing this into one task called "Implement the fix and regression test" or similar. That hides the red-then-green sequence and silently violates the bugfix discipline.
+**Common mistake:** collapsing this into one task called "Implement the fix and regression test" or similar. That hides the red-then-green sequence and silently violates the software-bugfix discipline.
 
 ## QA
 
@@ -169,8 +169,8 @@ The shapes above (4–6 tasks for Planning, 5–7 for Implementation, 6–8 for 
 
 This skill is the orchestrator. Don't reimplement what other skills already cover.
 
-- **Planning column:** read `software-planning` end-to-end. Apply `debug` if the failure isn't localized.
-- **Implementation:** read `bugfix` end-to-end before writing the test. The red-before-green discipline is non-negotiable.
+- **Planning column:** read `software-planning` end-to-end. Apply `software-debug` if the failure isn't localized.
+- **Implementation:** read `software-bugfix` end-to-end before writing the test. The red-before-green discipline is non-negotiable.
 - **QA:** read `webapp-acceptance-runner` end-to-end before scaffolding. The skill enumerates the supported step kinds — only use steps from that list.
 - **Ad-hoc UI exploration:** `playwright-cli` for one-off browser interactions outside the runner.
 

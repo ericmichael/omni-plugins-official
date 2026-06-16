@@ -119,7 +119,7 @@ The scenario at `evaluations/scenarios/autopilot_fitness_bug.yml`, walked throug
 | Run report HTML exists, sized right, references runId | `acceptance_run_report_rendered`                                                          | Quality |
 | Agent discovered ticket via the right channel        | `mcp_used_to_discover_ticket` — at least one `list_tickets`/`get_ticket` call             | Process |
 | Agent walked the pipeline (no Backlog→Done jump)     | `ticket_moved_through_pipeline` — ≥2 `move_ticket` calls                                  | Process |
-| Each tracked skill was activated                     | `<skill>_skill_activated` (debug, software-planning, bugfix)                              | Process |
+| Each tracked skill was activated                     | `<skill>_skill_activated` (software-debug, software-planning, software-bugfix)                              | Process |
 | No remote git / GitHub operations                    | `no_remote_operations` — bash-command pattern check                                       | Guard   |
 | No tests deleted or `@skip`/`@xfail` added           | `no_test_disabling` — count diff vs pristine                                              | Guard   |
 
@@ -159,7 +159,7 @@ That's the value of EDD: validating measures surfaces problems in the things mea
 
 - **Outcome (5):** `db_row_exists`, `bug_caught_by_tests`, `command_in_workspace_succeeds`, `acceptance_run_completed`, `acceptance_run_has_passing_story`
 - **Quality (6):** `scope_respected`, `acceptance_run_manifest_well_formed`, `acceptance_per_story_manifests_consistent`, `acceptance_run_has_evidence`, `acceptance_run_report_rendered`, `acceptance_artifact_exists`
-- **Process (5):** `mcp_used_to_discover_ticket`, `ticket_moved_through_pipeline`, `debug_skill_activated`, `software_planning_skill_activated`, `bugfix_skill_activated`
+- **Process (5):** `mcp_used_to_discover_ticket`, `ticket_moved_through_pipeline`, `software_debug_skill_activated`, `software_planning_skill_activated`, `software_bugfix_skill_activated`
 - **Guard (2):** `no_remote_operations`, `no_test_disabling`
 
 Concrete cleanup from this mapping:
