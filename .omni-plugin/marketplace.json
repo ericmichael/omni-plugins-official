@@ -11,26 +11,26 @@
   "plugins": [
     {
       "name": "git-workflow",
-      "description": "Git lifecycle skills: commit, push, pull, land PRs, and debug failures",
+      "description": "Git lifecycle skills: git-commit, git-push, git-pull, git-land PRs, and software debugging failures",
       "source": "./",
       "strict": false,
       "skills": [
-        "./skills/commit",
-        "./skills/debug",
-        "./skills/land",
-        "./skills/pull",
-        "./skills/push"
+        "./skills/git-commit",
+        "./skills/software-debug",
+        "./skills/git-land",
+        "./skills/git-pull",
+        "./skills/git-push"
       ]
     },
     {
       "name": "dev-essentials",
-      "description": "Software planning, ticket workflows, bugfixing, browser automation, and acceptance test runner",
+      "description": "Software planning, ticket workflows, software bugfixing, browser automation, and acceptance test runner",
       "source": "./",
       "strict": false,
       "skills": [
         "./skills/software-planning",
         "./skills/software-tickets",
-        "./skills/bugfix",
+        "./skills/software-bugfix",
         "./skills/playwright-cli",
         "./skills/webapp-acceptance-runner"
       ]
