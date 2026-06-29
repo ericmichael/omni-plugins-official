@@ -45,6 +45,15 @@
         "./skills/omniagents-project",
         "./skills/omniagents-eval-creator"
       ]
+    },
+    {
+      "name": "azure-hipaa",
+      "description": "Internal Azure HIPAA infrastructure review and hardening playbook for private-first Bicep deployments",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/azure-hipaa-infra"
+      ]
     }
   ],
   "apps": [
