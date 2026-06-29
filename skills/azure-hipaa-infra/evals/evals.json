@@ -1,0 +1,23 @@
+{
+  "skill_name": "azure-hipaa-infra",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review the Azure Bicep under infra/ for a new healthcare app that may store PHI. Map the current controls to HIPAA technical safeguards, call out which resources are public vs private, and rank the gaps by risk.",
+      "expected_output": "A HIPAA-aligned Azure control matrix, network posture table, risk-ranked gaps, and owner labels separating Bicep, app code, CI/CD, Entra/manual, and policy/process work.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "We have an App Service, Postgres Flexible Server, Storage, Key Vault, Service Bus, and Azure OpenAI in Bicep. Make the infrastructure private-first for HIPAA and give reusable Bicep recommendations plus verification commands.",
+      "expected_output": "Azure-only private networking recommendations for each service, including private endpoints/private DNS/VNet integration, WAF handling for public exceptions, diagnostics, CMK, Defender/Policy, and az verification commands.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Our current template looks similar to Omni Desktop but the web app is public. For a PHI-bearing internal app, explain whether that's acceptable, what compensating controls are needed if it stays public, and what the preferred private target architecture should be.",
+      "expected_output": "A clear statement that public ingress is an exception, not the baseline; recommended private App Service or approved corporate ingress; compensating controls for any public exception; and no claim that infrastructure alone proves HIPAA compliance.",
+      "files": []
+    }
+  ]
+}
